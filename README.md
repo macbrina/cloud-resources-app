@@ -1,36 +1,113 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Cloud Resources Web Application
+
+This is a small web application that displays a list of cloud resources, implements real-time updates, search, and filtering functionality. Data is fetched via GraphQL to provide efficient querying and subscription support for real-time updates.
+
+## Features
+
+- [List Cloud Resources](#list-cloud-resources): Displays a list of cloud resources with essential details.
+- [Real-Time Updates](#real-time-updates): Automatically updates the resource list when there are changes.
+- [Filtering and Search](#filtering-and-search): Provides options to filter by resource type, status, and a search bar to filter by name.
+- [GraphQL API](#graphql-api): Uses GraphQL to handle data fetching and subscriptions for real-time updates.
+
+## Tech Stack
+
+- **Frontend**: Next.js, Apollo Client
+- **Backend**: Apollo Server, Express.js, GraphQL, WebSocket
+- **WebSocket Library**: `graphql-ws` for handling subscriptions
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Ensure you have the following installed:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **Node.js** (v14 or later)
+- **npm** or **yarn**
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+### Installation
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/your-username/cloud-resources-app.git
+   cd cloud-resources-app
+   ```
+2. **Install dependencies**:
 
-## Learn More
+   ```bash
+    # In the server directory
+    npm install
+    # In the client directory
+    cd client
+    npm install
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+3. Run the server: In the root of the server directory, start the backend server:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+   ```bash
+    npm run dev
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+   The server should be running at http://localhost:4000.
 
-## Deploy on Vercel
+4. Run the client: In the client directory, start the Next.js frontend:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+   ```bash
+   npm run dev
+   ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+   The client should be running at http://localhost:3000
+
+## Usage
+
+- **View Cloud Resources**: On the main page, you can view all available cloud resources.
+- **Search and Filter**: Use the search bar to filter resources by name, or use the dropdown menus to filter by type and status.
+- **Real-Time Updates**: Resources update in real-time when there are changes on the server.
+
+## Project Structure
+
+- **server**: Contains the backend server setup with Apollo Server, GraphQL schema, and WebSocket integration.
+- **client**: Contains the Next.js frontend with components for displaying, searching, and filtering cloud resources.
+
+## Example GraphQL Queries
+
+1. **Fetch All Cloud Resources**:
+
+   ```graphql
+   query {
+     cloudResources {
+       id
+       name
+       type
+       status
+     }
+   }
+   ```
+
+2. **Subscription for Resource Updates**:
+
+   ```graphql
+   subscription {
+     resourceUpdated {
+       id
+       name
+       type
+       status
+     }
+   }
+   ```
+
+## Deployment
+
+For deployment, you can use platforms such as Vercel for the frontend and Heroku or Render for the backend. Ensure WebSocket support is configured on the server for subscriptions.
+
+## Contributing
+
+1. Fork the repository.
+2. Create a feature branch: git checkout -b feature-name
+3. Commit changes: git commit -m 'Add some feature'
+4. Push to the branch: git push origin feature-name
+5. Create a pull request.
+
+## License
+
+This project is licensed under the [MIT License](LICENSE). See the LICENSE file for details.

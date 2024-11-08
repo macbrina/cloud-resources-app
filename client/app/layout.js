@@ -1,3 +1,4 @@
+import ApolloProviderLayout from "@/provider/ApolloProviderLayout";
 import localFont from "next/font/local";
 import "./globals.css";
 
@@ -23,7 +24,7 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <ApolloProviderLayout>{children}</ApolloProviderLayout>
       </body>
     </html>
   );
